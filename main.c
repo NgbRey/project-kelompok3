@@ -36,15 +36,15 @@ void lihatBuku();
 void pinjamBuku();
 void lihatBukuDipinjam();
 void kembalikanBuku();
-void hapusBuku(); // Deklarasi fungsi hapus buku
-void editBuku();  // Deklarasi fungsi edit buku
+void hapusBuku();  
+void editBuku();  
 void simpanDataBuku();
 void bacaDataBuku();
 void clearBuffer();
 
-// Variabel global
+// struktur akun login
 struct Buku buku[MAX_BUKU];
-struct Pengguna user[MAX_USER] = {{"admin", "admin", 1}, {"user", "123", 0}};
+struct Pengguna user[MAX_USER] = {{"admin", "reyan", 1}, {"user", "reyan", 0}};
 int jumlah_buku = 0;
 int jumlah_user = 2;
 struct Buku buku_dipinjam[MAX_BUKU_DIPINJAM];
@@ -54,12 +54,12 @@ int main()
 {
     bacaDataBuku(); // Membaca data buku dari file
 
-    login(); // Login ke sistem
+    login(); // Masuk ke sistem
 
     return 0;
 }
 
-// Fungsi untuk login
+// Fungsi untuk masuk
 void login()
 {
     char username[100];
@@ -184,7 +184,6 @@ void menuUser()
 void tambahBuku()
 {
     printf("\nTambah Buku\n");
-    // Implementasi penambahan buku di sini
     if (jumlah_buku >= MAX_BUKU)
     {
         printf("Maaf, batas maksimal jumlah buku telah tercapai.\n");
@@ -220,7 +219,7 @@ void tambahBuku()
     jumlah_buku++;
     printf("Buku berhasil ditambahkan.\n");
 
-    simpanDataBuku(); // Menyimpan data buku ke file
+    simpanDataBuku(); // Menyimpan data ke file
 }
 
 // Fungsi untuk melihat daftar buku
