@@ -227,6 +227,10 @@ void tambahBuku()
 void lihatBuku()
 {
     printf("\nDaftar Buku yang Tersedia\n");
+    
+    // Variabel untuk menandakan apakah ada buku yang tersedia
+    int adaBukuTersedia = 0;
+    
     for (int i = 0; i < jumlah_buku; ++i)
     {
         int isDipinjam = 0;
@@ -247,7 +251,15 @@ void lihatBuku()
             printf("Jumlah Halaman: %u\n", buku[i].jumlah_halaman);
             printf("Tahun Terbit: %u\n", buku[i].tahun_terbit);
             printf("Jumlah Tersedia: %u\n\n", buku[i].jumlah_tersedia);
+            
+            adaBukuTersedia = 1; // Setel menjadi true jika ada buku yang tersedia
         }
+    }
+    
+    // Cetak pesan jika tidak ada buku yang tersedia
+    if (!adaBukuTersedia)
+    {
+        printf("Maaf, tidak ada buku yang tersedia.\n");
     }
 }
 
