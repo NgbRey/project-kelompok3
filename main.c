@@ -297,3 +297,56 @@ void pinjamBuku()
     buku[index_buku].jumlah_tersedia--;
     printf("Hore! Buku berhasil dipinjam. Mohon dijaga dan dikembalikan dalam kondisi baik\n");
 }
+
+// Fungsi untuk melihat daftar buku yang dipinjam
+void lihatBukuDipinjam()
+{
+    printf("\nBuku yang Dipinjam\n");
+    if (jumlah_buku_dipinjam == 0)
+    {
+        printf("Anda belum meminjam buku apapun.\n");
+        return;
+    }
+
+    for (int i = 0; i < jumlah_buku_dipinjam; ++i)
+    {
+        printf("Id Buku: %u\n", buku_dipinjam[i].id);
+        printf("Judul: %s\n", buku_dipinjam[i].judul);
+        printf("Penulis: %s\n", buku_dipinjam[i].penulis);
+        printf("Penerbit: %s\n", buku_dipinjam[i].penerbit);
+        printf("Jumlah Halaman: %u\n", buku_dipinjam[i].jumlah_halaman);
+        printf("Tahun Terbit: %u\n", buku_dipinjam[i].tahun_terbit);
+        printf("\n");
+    }
+}
+
+// Fungsi untuk mengembalikan buku
+void kembalikanBuku()
+{
+    printf("\nKembalikan Buku\n");
+    if (jumlah_buku_dipinjam == 0)
+    {
+        printf("Anda belum meminjam buku apapun.\n");
+        return;
+    }
+
+    int id_buku;
+    printf("Masukkan ID buku yang ingin dikembalikan: ");
+    scanf("%d", &id_buku);
+    clearBuffer();
+
+    int index_buku = -1;
+    for (int i = 0; i < jumlah_buku_dipinjam; ++i)
+    {
+        if (buku_dipinjam[i].id == id_buku)
+        {
+            index_buku = i;
+            break;
+        }
+    }
+
+    if (index_buku == -1)
+    {
+        printf("Maaf, buku dengan ID tersebut tidak ditemukan dalam daftar buku yang Anda pinjam.\n");
+        return;
+    }
