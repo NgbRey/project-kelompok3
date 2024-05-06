@@ -350,3 +350,53 @@ void kembalikanBuku()
         printf("Maaf, buku dengan ID tersebut tidak ditemukan dalam daftar buku yang Anda pinjam.\n");
         return;
     }
+
+// Kembalikan buku ke daftar buku yang tersedia dan hapus dari daftar buku yang dipinjam
+    buku[index_buku].jumlah_tersedia++;
+    for (int i = index_buku; i < jumlah_buku_dipinjam - 1; ++i)
+    {
+        buku_dipinjam[i] = buku_dipinjam[i + 1];
+    }
+    jumlah_buku_dipinjam--;
+    printf("Terima kasih, buku telah dikembalikan.\n");
+
+    menuUser(); // kembali ke menu user
+}
+
+// Fungsi untuk menghapus buku
+void hapusBuku()
+{
+    printf("\nHapus Buku\n");
+    int id_buku;
+    printf("Masukkan ID buku yang ingin dihapus: ");
+    scanf("%d", &id_buku);
+    clearBuffer();
+
+    int index_buku = -1;
+    for (int i = 0; i < jumlah_buku; ++i)
+    {
+        if (buku[i].id == id_buku)
+        {
+            index_buku = i;
+            break;
+        }
+    }
+
+    if (index_buku == -1)
+    {
+        printf("Maaf, buku dengan ID tersebut tidak ditemukan.\n");
+        return;
+    }
+
+    // Geser array untuk menghapus buku
+    for (int i = index_buku; i < jumlah_buku - 1; ++i)
+    {
+        buku[i] = buku[i + 1];
+    }
+    jumlah_buku--;
+
+    printf("Buku berhasil dihapus.\n");
+
+    // Simpan perubahan ke file
+    simpanDataBuku();
+}
