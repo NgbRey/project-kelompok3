@@ -454,3 +454,63 @@ void editBuku()
     // Simpan perubahan ke file
     simpanDataBuku();
 }
+
+// Fungsi untuk menyimpan data buku ke file
+void simpanDataBuku()
+{
+    FILE *file = fopen(FILENAME, "w");
+    if (file == NULL)
+    {
+        printf("Gagal membuka file untuk penyimpanan data buku.\n");
+        return;
+    }
+
+    for (int i = 0; i < jumlah_buku; ++i)
+    {
+        fprintf(file, "Id Buku: %u\n", buku[i].id);
+        fprintf(file, "Judul: %s\n", buku[i].judul);
+        fprintf(file, "Penulis: %s\n", buku[i].penulis);
+        fprintf(file, "Penerbit: %s\n", buku[i].penerbit);
+        fprintf(file, "Jumlah Halaman: %u\n", buku[i].jumlah_halaman);
+        fprintf(file, "Tahun Terbit: %u\n", buku[i].tahun_terbit);
+        fprintf(file, "Jumlah Tersedia: %u\n", buku[i].jumlah_tersedia);
+    }
+
+    fclose(file);
+}
+
+// Fungsi untuk membaca data buku dari file
+void bacaDataBuku()
+{
+    FILE *file = fopen(FILENAME, "r");
+    if (file == NULL)
+    {
+        printf("Gagal membaca file data buku.\n");
+        return;
+    }
+
+    while (!feof(file) && jumlah_buku < MAX_BUKU)
+    {
+        fscanf(file, "Id Buku: %u\n", &buku[jumlah_buku].id);
+        fgets(buku[jumlah_buku].judul, sizeof(buku[jumlah_buku].judul), file);
+        strtok(buku[jumlah_buku].judul, "\n");
+        fgets(buku[jumlah_buku].penulis, sizeof(buku[jumlah_buku].penulis), file);
+        strtok(buku[jumlah_buku].penulis, "\n");
+        fgets(buku[jumlah_buku].penerbit, sizeof(buku[jumlah_buku].penerbit), file);
+        strtok(buku[jumlah_buku].penerbit, "\n");
+        fscanf(file, "Jumlah Halaman: %u\n", &buku[jumlah_buku].jumlah_halaman);
+        fscanf(file, "Tahun Terbit: %u\n", &buku[jumlah_buku].tahun_terbit);
+        fscanf(file, "Jumlah Tersedia: %u\n", &buku[jumlah_buku].jumlah_tersedia);
+        jumlah_buku++;
+    }
+
+    fclose(file);
+}
+
+// Fungsi untuk membersihkan buffer input
+void clearBuffer()
+{
+    char c;
+    while ((c = getchar()) != '\n' && c != EOF)
+        ;
+}
