@@ -1,0 +1,14 @@
+Id Buku: 1
+Judul: menjaga
+Penulis: reyan
+Penerbit: mulmed
+Jumlah Halaman: 1000
+Tahun Terbit: 2024
+Jumlah Tersedia: 1
+Id Buku: 2
+Judul: merusak
+Penulis: reyan
+Penerbit: mulmed
+Jumlah Halaman: 1000
+Tahun Terbit: 2024
+Jumlah Tersedia: 1
