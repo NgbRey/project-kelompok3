@@ -252,11 +252,10 @@ void lihatBuku()
             printf("Tahun Terbit: %u\n", buku[i].tahun_terbit);
             printf("Jumlah Tersedia: %u\n\n", buku[i].jumlah_tersedia);
             
-            adaBukuTersedia = 1; // Setel menjadi true jika ada buku yang tersedia
+            adaBukuTersedia = 1; 
         }
     }
     
-    // Cetak pesan jika tidak ada buku yang tersedia
     if (!adaBukuTersedia)
     {
         printf("Maaf, tidak ada buku yang tersedia.\n");
