@@ -400,3 +400,57 @@ void hapusBuku()
     // Simpan perubahan ke file
     simpanDataBuku();
 }
+
+// Fungsi untuk mengedit buku
+void editBuku()
+{
+    printf("\nEdit Buku\n");
+    int id_buku;
+    printf("Masukkan ID buku yang ingin diedit: ");
+    scanf("%d", &id_buku);
+    clearBuffer();
+
+    int index_buku = -1;
+    for (int i = 0; i < jumlah_buku; ++i)
+    {
+        if (buku[i].id == id_buku)
+        {
+            index_buku = i;
+            break;
+        }
+    }
+
+    if (index_buku == -1)
+    {
+        printf("Maaf, buku dengan ID tersebut tidak ditemukan.\n");
+        return;
+    }
+
+    // Memperbarui informasi buku
+    printf("Masukkan informasi buku yang baru:\n");
+    printf("Judul: ");
+    fgets(buku[index_buku].judul, sizeof(buku[index_buku].judul), stdin);
+    strtok(buku[index_buku].judul, "\n");
+
+    printf("Penulis: ");
+    fgets(buku[index_buku].penulis, sizeof(buku[index_buku].penulis), stdin);
+    strtok(buku[index_buku].penulis, "\n");
+
+    printf("Penerbit: ");
+    fgets(buku[index_buku].penerbit, sizeof(buku[index_buku].penerbit), stdin);
+    strtok(buku[index_buku].penerbit, "\n");
+
+    printf("Jumlah Halaman: ");
+    scanf("%u", &buku[index_buku].jumlah_halaman);
+
+    printf("Tahun Terbit: ");
+    scanf("%u", &buku[index_buku].tahun_terbit);
+
+    printf("Jumlah Tersedia: ");
+    scanf("%u", &buku[index_buku].jumlah_tersedia);
+
+    printf("Buku berhasil diupdate.\n");
+
+    // Simpan perubahan ke file
+    simpanDataBuku();
+}
